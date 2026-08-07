@@ -1,0 +1,40 @@
+name: cyber_guardian_ai
+description: "A new Flutter project."
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.12.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_screenutil: ^5.9.3
+  provider: ^6.1.5+1
+  http: ^1.6.0
+  syncfusion_flutter_gauges: ^34.2.2
+
+  cupertino_icons: ^1.0.9
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_riverpod: ^3.4.2
+  go_router: ^17.3.0
+  dio: ^5.11.0
+  image_picker: ^1.2.3
+  mobile_scanner: ^7.4.0
+  google_fonts: ^8.2.1
+  flutter_screenutil: ^5.9.3
+  lottie: ^3.5.1
+  shared_preferences: ^2.5.5
+
+  flutter_lints: ^6.0.0
+
+flutter:
+
+  uses-material-design: true
+  assets:
+    - assets/images/
+
