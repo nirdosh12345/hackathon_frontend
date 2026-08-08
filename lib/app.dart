@@ -10,7 +10,7 @@ class CyberGuardianApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      title: 'Cyber Guardian AI',
+      title: 'Cyber Mother',
 
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,

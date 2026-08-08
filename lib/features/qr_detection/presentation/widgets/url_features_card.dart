@@ -3,27 +3,20 @@ import 'package:flutter/material.dart';
 class UrlFeaturesCard extends StatelessWidget {
   final Map<String, dynamic> result;
 
-  const UrlFeaturesCard({
-    super.key,
-    required this.result,
-  });
+  const UrlFeaturesCard({super.key, required this.result});
 
-  Widget buildTile(
-      IconData icon,
-      String title,
-      dynamic value,
-      ) {
+  Widget buildTile(IconData icon, String title, dynamic value) {
     return Card(
       elevation: 0,
       color: Colors.deepPurple.shade200.withOpacity(0.1),
       child: ListTile(
-        leading: Icon(icon, color: Colors.blueGrey,),
-        title: Text(title, style: TextStyle(color: Colors.white70),),
+        leading: Icon(icon, color: Colors.blueGrey),
+        title: Text(title, style: TextStyle(color: Colors.white70)),
         trailing: Text(
           value.toString(),
           style: const TextStyle(
             fontWeight: FontWeight.bold,
-            color: Colors.black54
+            color: Colors.white,
           ),
         ),
       ),
@@ -32,49 +25,32 @@ class UrlFeaturesCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    final analysis =
-        result["analysis"] as Map<String, dynamic>? ?? {};
+    final analysis = result["analysis"] as Map<String, dynamic>? ?? {};
 
     return Card(
       elevation: 5,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment:
-          CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
             Row(
               children: [
-
-                Icon(
-                  Icons.language,
-                  color: Colors.indigo,
-                ),
+                Icon(Icons.language, color: Colors.indigo),
 
                 const SizedBox(width: 10),
 
                 const Text(
                   "URL Features",
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                 ),
               ],
             ),
 
             const SizedBox(height: 20),
 
-            buildTile(
-              Icons.link,
-              "Domain",
-              analysis["domain"] ?? "-",
-            ),
+            buildTile(Icons.link, "Domain", analysis["domain"] ?? "-"),
 
             buildTile(
               Icons.straighten,
@@ -97,38 +73,24 @@ class UrlFeaturesCard extends StatelessWidget {
             buildTile(
               Icons.lock,
               "HTTPS",
-              (analysis["https"] ?? false)
-                  ? "Enabled"
-                  : "Disabled",
+              (analysis["https"] ?? false) ? "Enabled" : "Disabled",
             ),
 
             buildTile(
               Icons.public,
               "Contains IP",
-              (analysis["contains_ip"] ?? false)
-                  ? "Yes"
-                  : "No",
+              (analysis["contains_ip"] ?? false) ? "Yes" : "No",
             ),
 
             buildTile(
               Icons.shortcut,
               "URL Shortener",
-              (analysis["shortener"] ?? false)
-                  ? "Yes"
-                  : "No",
+              (analysis["shortener"] ?? false) ? "Yes" : "No",
             ),
 
-            buildTile(
-              Icons.tag,
-              "Hyphens",
-              analysis["hyphen_count"] ?? "-",
-            ),
+            buildTile(Icons.tag, "Hyphens", analysis["hyphen_count"] ?? "-"),
 
-            buildTile(
-              Icons.pin,
-              "Digits",
-              analysis["digit_count"] ?? "-",
-            ),
+            buildTile(Icons.pin, "Digits", analysis["digit_count"] ?? "-"),
 
             buildTile(
               Icons.warning_amber,

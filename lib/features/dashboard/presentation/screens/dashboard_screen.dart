@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../shared/widgets/feature_card.dart';
+import '../../../audio-detection/presentation/pages/audio_detection_page.dart';
+import '../../../image_detection/presentation/screens/image_detection_page.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
@@ -25,12 +27,9 @@ class DashboardScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
 
                 children: [
-
                   // ================= HEADER =================
-
                   Row(
                     children: [
-
                       Container(
                         height: 65,
                         width: 65,
@@ -53,9 +52,8 @@ class DashboardScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
 
                         children: [
-
                           Text(
-                            "Cyber Guardian AI",
+                            "Cyber Mother",
                             style: TextStyle(
                               fontSize: 24,
                               fontWeight: FontWeight.bold,
@@ -66,19 +64,16 @@ class DashboardScreen extends StatelessWidget {
 
                           Text(
                             "One App Against Every Digital Scam",
-                            style: TextStyle(
-                              color: Colors.white70,
-                            ),
+                            style: TextStyle(color: Colors.white70),
                           ),
                         ],
-                      )
+                      ),
                     ],
                   ),
 
                   const SizedBox(height: 30),
 
                   // ================= STATUS CARD =================
-
                   Container(
                     width: double.infinity,
                     padding: const EdgeInsets.all(18),
@@ -92,19 +87,15 @@ class DashboardScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
 
                       children: [
-
                         const Text(
                           "System Status",
-                          style: TextStyle(
-                            color: Colors.white70,
-                          ),
+                          style: TextStyle(color: Colors.white70),
                         ),
 
                         const SizedBox(height: 15),
 
                         Row(
                           children: [
-
                             Container(
                               width: 14,
                               height: 14,
@@ -123,7 +114,7 @@ class DashboardScreen extends StatelessWidget {
                                 fontSize: 22,
                                 fontWeight: FontWeight.bold,
                               ),
-                            )
+                            ),
                           ],
                         ),
 
@@ -137,7 +128,6 @@ class DashboardScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
                           children: [
-
                             Text("AI Engine"),
 
                             Text(
@@ -146,7 +136,7 @@ class DashboardScreen extends StatelessWidget {
                                 color: Colors.green,
                                 fontWeight: FontWeight.bold,
                               ),
-                            )
+                            ),
                           ],
                         ),
 
@@ -155,13 +145,8 @@ class DashboardScreen extends StatelessWidget {
                         const Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
-                          children: [
-
-                            Text("Last Scan"),
-
-                            Text("Today")
-                          ],
-                        )
+                          children: [Text("Last Scan"), Text("Today")],
+                        ),
                       ],
                     ),
                   ),
@@ -170,10 +155,7 @@ class DashboardScreen extends StatelessWidget {
 
                   const Text(
                     "Protection Tools",
-                    style: TextStyle(
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                   ),
 
                   const SizedBox(height: 20),
@@ -188,7 +170,6 @@ class DashboardScreen extends StatelessWidget {
                     childAspectRatio: 1.5,
 
                     children: [
-
                       FeatureCard(
                         title: "Verify URL",
                         subtitle: "Analyze suspicious links",
@@ -203,7 +184,10 @@ class DashboardScreen extends StatelessWidget {
                       FeatureCard(
                         title: "Scan QR",
                         subtitle: "Detect malicious QR",
-                        icon: [Icons.qr_code_scanner, Icons.arrow_forward_rounded],
+                        icon: [
+                          Icons.qr_code_scanner,
+                          Icons.arrow_forward_rounded,
+                        ],
                         color: Colors.cyan,
                         backgrondImage: 'assets/images/scan_qr.png',
                         onTap: () {
@@ -218,7 +202,11 @@ class DashboardScreen extends StatelessWidget {
                         color: Colors.orange,
                         backgrondImage: 'assets/images/analyse_image.png',
                         onTap: () {
-                          context.push('/image-detection');
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const ImageDetectionPage(),
+                            ),
+                          );
                         },
                       ),
 
@@ -232,6 +220,21 @@ class DashboardScreen extends StatelessWidget {
                           context.push('/history');
                         },
                       ),
+
+                      FeatureCard(
+                        title: "Audio",
+                        subtitle: "",
+                        icon: [Icons.mic, Icons.arrow_forward_rounded],
+                        color: Colors.deepPurple,
+                        backgrondImage: 'assets/images/analyse_audio.png',
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const AudioDetectionPage(),
+                            ),
+                          );
+                        },
+                      ),
                     ],
                   ),
 
@@ -239,25 +242,24 @@ class DashboardScreen extends StatelessWidget {
 
                   const Text(
                     "Quick Actions",
-                    style: TextStyle(
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                   ),
 
                   const SizedBox(height: 20),
 
                   Row(
                     children: [
-
                       Expanded(
                         child: ElevatedButton.icon(
                           style: ElevatedButton.styleFrom(
-                            fixedSize: MediaQuery.of(context).size * 0.08
+                            fixedSize: MediaQuery.of(context).size * 0.08,
                           ),
                           onPressed: () {},
                           icon: const Icon(Icons.report),
-                          label: Text("Report Scam", style: TextStyle(fontSize: 6.sp),),
+                          label: Text(
+                            "Report Scam",
+                            style: TextStyle(fontSize: 6.sp),
+                          ),
                         ),
                       ),
 
@@ -266,11 +268,14 @@ class DashboardScreen extends StatelessWidget {
                       Expanded(
                         child: ElevatedButton.icon(
                           style: ElevatedButton.styleFrom(
-                              fixedSize: MediaQuery.of(context).size * 0.08
+                            fixedSize: MediaQuery.of(context).size * 0.08,
                           ),
                           onPressed: () {},
                           icon: const Icon(Icons.school),
-                          label: Text("Learn", style: TextStyle(fontSize: 6.sp),),
+                          label: Text(
+                            "Learn",
+                            style: TextStyle(fontSize: 6.sp),
+                          ),
                         ),
                       ),
                     ],
@@ -280,20 +285,14 @@ class DashboardScreen extends StatelessWidget {
 
                   const Text(
                     "Recent Activity",
-                    style: TextStyle(
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                   ),
 
                   const SizedBox(height: 15),
 
                   const Card(
                     child: ListTile(
-                      leading: Icon(
-                        Icons.check_circle,
-                        color: Colors.green,
-                      ),
+                      leading: Icon(Icons.check_circle, color: Colors.green),
                       title: Text("google.com"),
                       subtitle: Text("Safe"),
                     ),
@@ -301,10 +300,7 @@ class DashboardScreen extends StatelessWidget {
 
                   const Card(
                     child: ListTile(
-                      leading: Icon(
-                        Icons.warning,
-                        color: Colors.red,
-                      ),
+                      leading: Icon(Icons.warning, color: Colors.red),
                       title: Text("amazon-login-security.xyz"),
                       subtitle: Text("High Risk"),
                     ),

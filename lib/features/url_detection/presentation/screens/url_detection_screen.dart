@@ -36,9 +36,7 @@ class _UrlDetectionPageState extends State<UrlDetectionPage> {
       return;
     }
 
-    await context.read<UrlDetectionProvider>().scanUrl(
-      _controller.text.trim(),
-    );
+    await context.read<UrlDetectionProvider>().scanUrl(_controller.text.trim());
   }
 
   @override
@@ -58,22 +56,16 @@ class _UrlDetectionPageState extends State<UrlDetectionPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-
                 const Text(
                   "Scan Website",
-                  style: TextStyle(
-                    fontSize: 26,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
                 ),
 
                 const SizedBox(height: 8),
 
                 Text(
                   "Analyze URLs using Hybrid AI Detection Engine",
-                  style: TextStyle(
-                    color: Colors.grey.shade600,
-                  ),
+                  style: TextStyle(color: Colors.grey.shade600),
                 ),
 
                 const SizedBox(height: 30),
@@ -94,8 +86,7 @@ class _UrlDetectionPageState extends State<UrlDetectionPage> {
                     ),
 
                     border: OutlineInputBorder(
-                      borderRadius:
-                      BorderRadius.circular(15),
+                      borderRadius: BorderRadius.circular(15),
                     ),
                   ),
 
@@ -114,8 +105,7 @@ class _UrlDetectionPageState extends State<UrlDetectionPage> {
                   width: double.infinity,
                   height: 55,
                   child: ElevatedButton.icon(
-                    onPressed:
-                    provider.isLoading ? null : _scanUrl,
+                    onPressed: provider.isLoading ? null : _scanUrl,
 
                     icon: const Icon(Icons.security),
 
@@ -134,17 +124,14 @@ class _UrlDetectionPageState extends State<UrlDetectionPage> {
                       padding: EdgeInsets.all(30),
                       child: Column(
                         children: [
-
                           CircularProgressIndicator(),
 
                           SizedBox(height: 20),
 
                           Text(
                             "Analyzing URL...",
-                            style: TextStyle(
-                              fontSize: 16,
-                            ),
-                          )
+                            style: TextStyle(fontSize: 16),
+                          ),
                         ],
                       ),
                     ),
@@ -154,79 +141,58 @@ class _UrlDetectionPageState extends State<UrlDetectionPage> {
                   Card(
                     color: Colors.red.shade50,
                     child: ListTile(
-                      leading: const Icon(
-                        Icons.error,
-                        color: Colors.red,
+                      leading: const Icon(Icons.error, color: Colors.red),
+                      title: Text(
+                        provider.error!,
+                        style: TextStyle(color: Colors.redAccent),
                       ),
-                      title: Text(provider.error!, style: TextStyle(color: Colors.redAccent),),
                     ),
                   ),
 
                 if (provider.result != null) ...[
+                  const SizedBox(height: 20),
+
+                  SecuritySummaryCard(result: provider.result!),
 
                   const SizedBox(height: 20),
 
-                  SecuritySummaryCard(
-                    result: provider.result!,
-                  ),
+                  RiskGauge(riskScore: provider.result!["risk_score"] ?? 0),
 
                   const SizedBox(height: 20),
 
-                  RiskGauge(
-                    riskScore: provider.result!["risk_score"] ?? 0,
-                  ),
+                  AiAnalysisCard(result: provider.result!),
 
                   const SizedBox(height: 20),
 
-                  AiAnalysisCard(
-                    result: provider.result!,
-                  ),
+                  DomainInfoCard(result: provider.result!),
 
                   const SizedBox(height: 20),
 
-                  DomainInfoCard(
-                    result: provider.result!,
-                  ),
+                  ReasonsCard(reasons: provider.result!["reasons"] ?? []),
+
+                  // const SizedBox(height: 20),
+                  //
+                  // GoogleSafeBrowsingCard(
+                  //   result: provider.result!,
+                  // ),
+                  const SizedBox(height: 20),
+
+                  UrlFeaturesCard(result: provider.result!),
 
                   const SizedBox(height: 20),
 
-                  ReasonsCard(
-                    reasons: provider.result!["reasons"] ?? [],
-                  ),
+                  ThreatDetailsCard(result: provider.result!),
 
                   const SizedBox(height: 20),
 
-                  GoogleSafeBrowsingCard(
-                    result: provider.result!,
-                  ),
+                  SecurityRecommendationCard(result: provider.result!),
 
                   const SizedBox(height: 20),
 
-                  UrlFeaturesCard(
-                    result: provider.result!,
-                  ),
-
-                  const SizedBox(height: 20),
-
-                  ThreatDetailsCard(
-                    result: provider.result!,
-                  ),
-
-                  const SizedBox(height: 20),
-
-                  SecurityRecommendationCard(
-                    result: provider.result!,
-                  ),
-
-                  const SizedBox(height: 20),
-
-                  DetectionPipelineCard(
-                    result: provider.result!,
-                  ),
+                  DetectionPipelineCard(result: provider.result!),
 
                   const SizedBox(height: 30),
-
-                ]
+                ],
               ],
             ),
           ),
