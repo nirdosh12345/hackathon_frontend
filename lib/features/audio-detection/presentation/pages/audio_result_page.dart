@@ -1,24 +1,31 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 
 import '../../../url_detection/presentation/widgets/risk_gauge.dart';
 import '../../../url_detection/presentation/widgets/security_summary_card.dart';
-
 import '../widgets/audio_player_card.dart';
-import '../widgets/transcript_card.dart';
-import '../widgets/keyword_card.dart';
 import '../widgets/context_card.dart';
+import '../widgets/keyword_card.dart';
 import '../widgets/psychology_card.dart';
-import '../widgets/timestamp_card.dart';
 import '../widgets/recommendation_card.dart';
+import '../widgets/timestamp_card.dart';
+import '../widgets/transcript_card.dart';
 
 class AudioResultPage extends StatelessWidget {
-  final File audio;
-
+  final File? audio;
+  final Uint8List? audioBytes;
+  final String? audioName;
   final Map<String, dynamic> result;
 
-  const AudioResultPage({super.key, required this.audio, required this.result});
+  const AudioResultPage({
+    super.key,
+    this.audio,
+    this.audioBytes,
+    this.audioName,
+    required this.result,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +41,7 @@ class AudioResultPage extends StatelessWidget {
 
             children: [
               /// Audio Player
-              AudioPlayerCard(audio: audio),
+              AudioPlayerCard(audio: audio, audioBytes: audioBytes),
 
               const SizedBox(height: 20),
 
